@@ -48,7 +48,7 @@ void moveLeft(int** map, int numRows, int numCols, int* playerRow, int* playerCo
 }
 
 void moveRight(int** map, int numRows, int numCols, int* playerRow, int* playerCol) {
-    if (map[*playerRow][*playerCol + 1] == CLEAR) {
+    if ((map[*playerRow][*playerCol + 1] == CLEAR) && (*playerCol < numCols - 1)) {
         map[*playerRow][*playerCol] = CLEAR;     // Sets the current position to 0
         map[*playerRow][*playerCol + 1] = PLAYER;    // Sets the new position to 1
         *playerCol = *playerCol + 1;    // Updates the player's column
@@ -58,19 +58,21 @@ void moveRight(int** map, int numRows, int numCols, int* playerRow, int* playerC
 
 void moveUp(int** map, int numRows, int numCols, int* playerRow, int* playerCol) {
     if (map[*playerRow - 1][*playerCol] == CLEAR) {
-        map[*playerRow][*playerCol] = CLEAR;     // Sets the current position to 0
-        map[*playerRow - 1][*playerCol] = PLAYER;    // Sets the new position to 1
-        *playerRow = *playerRow - 1;    // Updates the player's row
-        printf("player row is now: %d\n", *playerRow);
+        if (*playerRow > 0) {
+            map[*playerRow][*playerCol] = CLEAR;
+            map[*playerRow - 1][*playerCol] = PLAYER;
+            *playerRow = *playerRow - 1;    // Updates the player's row
+        }
     }
 }
 
 void moveDown(int** map, int numRows, int numCols, int* playerRow, int* playerCol) {
-    if (map[*playerRow + 1][*playerCol] == CLEAR) {
-        map[*playerRow][*playerCol] = CLEAR;     // Sets the current position to 0
-        map[*playerRow + 1][*playerCol] = PLAYER;    // Sets the new position to 1
-        *playerRow = *playerRow + 1;    // Updates the player's row
-        printf("player row is now: %d\n", *playerRow);
+    if (*playerRow < numRows - 1) {
+        if (map[*playerRow + 1][*playerCol] == CLEAR) {
+            map[*playerRow][*playerCol] = CLEAR;     // Sets the current position to 0
+            map[*playerRow + 1][*playerCol] = PLAYER;    // Sets the new position to 1
+            *playerRow = *playerRow + 1;    // Updates the player's row
+        }
     }
 }
 
