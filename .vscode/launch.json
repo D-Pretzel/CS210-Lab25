@@ -5,16 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "gcc - Windows+WSL/Ubuntu",
+            "name": "gcc - Build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "program": "${workspaceFolder}\\${fileBasenameNoExtension}",
+            "args": ["5", "5", "3", "3"],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "D:/MinGW/bin/gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -22,17 +23,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: gcc build active file",
-            "miDebuggerPath": "/usr/bin/gdb"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "lldb - MacOS",
-            "program": "${workspaceFolder}/${fileBasenameNoExtension}",
-            "args": ["2", "2"],
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "C/C++: gcc build active file"
+            "preLaunchTask": "C/C++: gcc.exe build active file",
+            "targetArchitecture": "x64"
         }
     ]
 }
